@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(220 20% 4%);
+  --color-foreground: hsl(140 100% 95%);
+  --color-card: hsl(220 20% 7%);
+  --color-card-foreground: hsl(140 60% 90%);
+  --color-primary: hsl(150 100% 50%);
+  --color-primary-foreground: hsl(220 20% 4%);
+  --color-secondary: hsl(220 20% 12%);
+  --color-secondary-foreground: hsl(140 40% 80%);
+  --color-muted: hsl(220 20% 10%);
+  --color-muted-foreground: hsl(220 10% 50%);
+  --color-accent: hsl(270 80% 65%);
+  --color-accent-foreground: hsl(0 0% 100%);
+  --color-border: hsl(220 20% 14%);
+
+  --color-neon-green: #00ff88;
+  --color-neon-cyan: #00e5ff;
+  --color-neon-purple: #a855f7;
+  --color-neon-amber: #f59e0b;
+
+  --font-mono: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-fade-in: fadeIn 0.5s ease-in;
+  --animate-slide-up: slideUp 0.4s ease-out;
+  --animate-pulse-neon: pulse-neon 2s ease-in-out infinite;
+  --animate-scan: scan 3s linear infinite;
+  --animate-spin-slow: spin 2s linear infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-neon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse at top left, rgba(0, 255, 136, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(168, 85, 247, 0.04) 0%, transparent 50%);
+}
+
+::selection {
+  background: rgba(0, 255, 136, 0.2);
+  color: #00ff88;
+}
+
+.text-neon-green { color: #00ff88; }
+.text-neon-cyan { color: #00e5ff; }
+.text-neon-purple { color: #a855f7; }
+.text-neon-amber { color: #f59e0b; }
+
+.border-neon-green { border-color: rgba(0, 255, 136, 0.3); }
+.border-neon-purple { border-color: rgba(168, 85, 247, 0.3); }
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.15), 0 0 60px rgba(0, 255, 136, 0.05);
+}
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.15), 0 0 60px rgba(168, 85, 247, 0.05);
+}
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 30px rgba(0, 255, 136, 0.2);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.animate-fade-in { animation: fadeIn 0.5s ease-in; }
+.animate-slide-up { animation: slideUp 0.4s ease-out; }
+.animate-pulse-neon { animation: pulse-neon 2s ease-in-out infinite; }
+.animate-scan { animation: scan 3s linear infinite; }

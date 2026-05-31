@@ -55,9 +55,9 @@ export default function HomePage() {
     }
     setError("");
     setIsLoading(true);
-    // Simulate loading briefly before navigating
-    await new Promise((r) => setTimeout(r, 600));
-    router.push(`/report/${encodeURIComponent(trimmed)}`);
+    // Brief pause then navigate with ?from=search so report shows loading animation
+    await new Promise((r) => setTimeout(r, 400));
+    router.push(`/report/${encodeURIComponent(trimmed)}?from=search`);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

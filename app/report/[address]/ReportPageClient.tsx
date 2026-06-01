@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { ArrowLeft, Share2, Search, AlertTriangle, Wifi, WifiOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReportProvider } from "@/lib/report-context";
@@ -33,7 +33,6 @@ interface Props {
 }
 
 export default function ReportPageClient({ address }: Props) {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const fromSearch = searchParams.get("from") === "search";
 
@@ -170,7 +169,7 @@ export default function ReportPageClient({ address }: Props) {
           <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
             <div className="flex items-center gap-3 min-w-0">
               <button
-                onClick={() => router.push("/")}
+                onClick={() => { window.location.href = "/"; }}
                 className="text-muted-foreground hover:text-foreground transition-colors shrink-0"
               >
                 <ArrowLeft size={18} />

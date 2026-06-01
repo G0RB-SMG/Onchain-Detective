@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Search, Shield, Zap, Brain, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -42,12 +41,10 @@ const FEATURES = [
 ];
 
 export default function HomePage() {
-  const router = useRouter();
   const [address, setAddress] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // FIX: synchronous navigation — no async delay that could silently fail
   const handleInvestigate = () => {
     const trimmed = address.trim();
     if (!trimmed) {
@@ -56,7 +53,7 @@ export default function HomePage() {
     }
     setError("");
     setIsLoading(true);
-    router.push(`/report/${encodeURIComponent(trimmed)}?from=search`);
+    window.location.href = `/report/${encodeURIComponent(trimmed)}?from=search`;
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

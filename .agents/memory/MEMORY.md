@@ -1,0 +1,2 @@
+- [Wallet API integration](wallet-api-integration.md) — CoinStats has no "scan any wallet" endpoint; use Ethplorer+blockchain.info+Solana RPC instead.
+- [Navigation pattern](navigation-pattern.md) — Use window.location.href everywhere (NOT router.push); RSC fetches blocked by Replit proxy.

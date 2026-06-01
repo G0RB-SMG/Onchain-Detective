@@ -19,7 +19,7 @@ import TimelineSection from "@/components/report/TimelineSection";
 
 const LOADING_STEPS = [
   "Resolving wallet address...",
-  "Fetching on-chain data from CoinStats...",
+  "Fetching on-chain data...",
   "Scanning connected wallets...",
   "Detecting CEX interactions...",
   "Analyzing transaction patterns...",
@@ -218,7 +218,7 @@ export default function ReportPageClient({ address }: Props) {
             <div className="max-w-5xl mx-auto flex items-center gap-2">
               <Wifi size={13} className="text-emerald-400 shrink-0" />
               <p className="text-xs font-mono text-emerald-400/80">
-                <span className="font-semibold">Live data</span> — fetched from CoinStats Wallet API on {reportDate}. LLM analysis (classification, inferences) coming in Phase 3.
+                <span className="font-semibold">Live data</span> — fetched from Ethplorer + CoinStats on {reportDate}. LLM analysis (classification, inferences) coming in Phase 3.
               </p>
             </div>
           </div>

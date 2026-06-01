@@ -4,17 +4,33 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import SectionHeader from "./SectionHeader";
 import { formatCurrency, getChainColor } from "@/lib/utils";
-import { SAMPLE_REPORT } from "@/lib/sample-data";
+import { useReport } from "@/lib/report-context";
 
 const protocolTypeColors: Record<string, string> = {
-  Lending: "text-neon-amber",
-  "LP Position": "text-neon-cyan",
-  Staking: "text-neon-green",
+  Lending: "text-amber-400",
+  "LP Position": "text-tan",
+  Staking: "text-gold",
 };
 
 export default function DefiSection() {
-  const { defiPositions } = SAMPLE_REPORT;
-  const totalValue = defiPositions.reduce((s, p) => s + p.valueUsd, 0);
+  const { defiPositions } = useReport();
+  const totalValue = defiPositions?.reduce((s, p) => s + p.valueUsd, 0) ?? 0;
+
+  if (!defiPositions || defiPositions.length === 0) {
+    return (
+      <section>
+        <SectionHeader
+          icon={Layers}
+          title="DeFi Positions"
+          subtitle="Active on-chain positions across lending, liquidity, and staking protocols"
+          iconColor="text-tan"
+        />
+        <div className="p-6 rounded-xl border border-border bg-card text-center text-muted-foreground font-mono text-sm">
+          No DeFi positions detected for this address.
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section>
@@ -22,16 +38,12 @@ export default function DefiSection() {
         icon={Layers}
         title="DeFi Positions"
         subtitle="Active on-chain positions across lending, liquidity, and staking protocols"
-        iconColor="text-neon-cyan"
+        iconColor="text-tan"
       />
 
       <div className="mb-4 flex items-center justify-between">
-        <span className="text-sm text-muted-foreground font-mono">
-          {defiPositions.length} active positions
-        </span>
-        <span className="font-mono font-bold text-neon-green text-glow-green">
-          {formatCurrency(totalValue)} total
-        </span>
+        <span className="text-sm text-muted-foreground font-mono">{defiPositions.length} active positions</span>
+        <span className="font-mono font-bold text-gold text-glow-gold">{formatCurrency(totalValue)} total</span>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -40,7 +52,7 @@ export default function DefiSection() {
             <CardContent className="p-5">
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <div className="font-mono font-semibold text-white">{pos.protocol}</div>
+                  <div className="font-mono font-semibold text-foreground">{pos.protocol}</div>
                   <div className="flex items-center gap-2 mt-1">
                     <span
                       className="text-xs font-mono px-1.5 py-0.5 rounded border"
@@ -52,20 +64,14 @@ export default function DefiSection() {
                     >
                       {pos.chain}
                     </span>
-                    <span
-                      className={`text-xs font-mono font-semibold ${
-                        protocolTypeColors[pos.type] || "text-muted-foreground"
-                      }`}
-                    >
+                    <span className={`text-xs font-mono font-semibold ${protocolTypeColors[pos.type] || "text-muted-foreground"}`}>
                       {pos.type}
                     </span>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="font-mono font-bold text-white">{formatCurrency(pos.valueUsd)}</div>
-                  <div className="text-xs text-neon-green font-mono mt-1">
-                    {pos.apy}% APY
-                  </div>
+                  <div className="font-mono font-bold text-foreground">{formatCurrency(pos.valueUsd)}</div>
+                  <div className="text-xs text-gold font-mono mt-1">{pos.apy}% APY</div>
                 </div>
               </div>
 
@@ -73,13 +79,9 @@ export default function DefiSection() {
 
               {pos.healthFactor !== null && (
                 <div className="flex items-center gap-2 pt-2 border-t border-border">
-                  <Heart size={12} className={pos.healthFactor > 1.5 ? "text-neon-green" : "text-neon-amber"} />
+                  <Heart size={12} className={pos.healthFactor > 1.5 ? "text-gold" : "text-amber-400"} />
                   <span className="text-xs font-mono text-muted-foreground">Health Factor</span>
-                  <span
-                    className={`text-xs font-mono font-bold ${
-                      pos.healthFactor > 1.5 ? "text-neon-green" : "text-neon-amber"
-                    }`}
-                  >
+                  <span className={`text-xs font-mono font-bold ${pos.healthFactor > 1.5 ? "text-gold" : "text-amber-400"}`}>
                     {pos.healthFactor}
                   </span>
                   {pos.healthFactor < 1.3 && (

@@ -1,0 +1,28 @@
+Phase 1 is now COMPLETE and looks excellent. The sample report already contains every section we need.
+
+We are continuing the entire project in this single chat so you maintain full contextual knowledge of the app, the required report sections, and the overall vision.
+
+**Critical bug fix required FIRST:**
+On the homepage, when the user enters a wallet address and clicks the "Investigate" button, it currently just shows loading/spinning but does not navigate to the report page (/report/[address]). Fix this immediately so the form properly routes to the dynamic report page with the entered wallet address.
+
+After fixing the navigation bug, update the entire design system to a sleek, minimal, classic detective / noir style:
+- Primary color palette: deep browns (#3F2A1E or #4A2C0B), black, off-white/cream accents (#F5F0E8)
+- Clean, professional "dossier" / vintage investigation file aesthetic
+- Subtle magnifying glass or eyeglass motifs where appropriate
+- Modern but understated and mysterious — remove all neon/cyber/green elements
+
+Once the navigation bug is fixed and the new theme is applied and confirmed working in the preview, proceed immediately to Phase 2:
+
+**Phase 2 — Real CoinStats Wallet API Integration**
+- Securely use COINSTATS_API_KEY from process.env.COINSTATS_API_KEY (already saved as a Replit Secret)
+- Create a proper server action or API route that accepts any wallet address
+- Fetch live data using the CoinStats Wallet API (multi-chain balances, total portfolio value, full transaction history, DeFi positions, tokens, NFTs, etc.)
+- Replace ALL placeholder/fake data in the report page with real fetched data
+- Properly aggregate and display total balance across all chains + detected connected wallets
+- Keep and fully populate all required report sections: total balance, connected wallets, CEX onboarding/offboarding, wallet classification, coin buying behavior, P&L summary, explicit inferences (labeled "Inference (X% confidence)"), timeline, holdings, DeFi positions, etc.
+
+After completing the bug fix + theme update + Phase 2 integration, show me the preview URL and confirm that entering any wallet address + clicking "Investigate" now works end-to-end with live data.
+
+Stay strictly in Phase 2 — do not move to Phase 3 until I confirm it's complete.
+
+Let's begin.

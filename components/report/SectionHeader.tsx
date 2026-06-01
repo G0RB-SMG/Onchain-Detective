@@ -14,17 +14,17 @@ export default function SectionHeader({
   title,
   subtitle,
   className,
-  iconColor = "text-neon-green",
+  iconColor = "text-gold",
 }: SectionHeaderProps) {
   return (
     <div className={cn("flex items-start gap-3 mb-6", className)}>
-      <div className={cn("mt-0.5 p-2 rounded-lg bg-white/5 border border-white/10", iconColor)}>
+      <div className={cn("mt-0.5 p-2 rounded-lg bg-gold/10 border border-gold/20", iconColor)}>
         <Icon size={18} />
       </div>
       <div>
-        <h2 className="font-mono text-lg font-semibold text-white">{title}</h2>
+        <h2 className="font-mono text-lg font-semibold text-foreground tracking-wide">{title}</h2>
         {subtitle && (
-          <p className="text-sm text-muted-foreground mt-0.5">{subtitle}</p>
+          <p className="text-sm text-muted-foreground mt-0.5 leading-snug">{subtitle}</p>
         )}
       </div>
     </div>

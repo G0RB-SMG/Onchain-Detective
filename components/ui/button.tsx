@@ -4,17 +4,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground hover:bg-primary/90 font-mono font-semibold",
-        neon:
-          "bg-transparent border border-neon-green/50 text-neon-green hover:bg-neon-green/10 hover:border-neon-green font-mono font-semibold transition-all hover:glow-green",
-        ghost: "hover:bg-accent/10 hover:text-accent-foreground",
-        outline: "border border-border hover:bg-secondary",
-        destructive: "bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30",
+          "bg-gold text-background hover:bg-gold-light font-mono font-semibold",
+        detective:
+          "bg-transparent border border-gold/50 text-gold hover:bg-gold/10 hover:border-gold font-mono font-semibold transition-all",
+        ghost: "hover:bg-secondary text-foreground",
+        outline: "border border-border hover:bg-secondary text-foreground",
+        destructive: "bg-red-900/20 text-red-400 border border-red-800/30 hover:bg-red-900/30",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
       },
       size: {
         default: "h-10 px-4 py-2",

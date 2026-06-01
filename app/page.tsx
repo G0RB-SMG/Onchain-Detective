@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Search, Shield, Zap, Brain, ArrowRight, Github, ExternalLink } from "lucide-react";
+import { Search, Shield, Zap, Brain, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const EXAMPLE_ADDRESSES = [
@@ -15,29 +15,29 @@ const FEATURES = [
     icon: Search,
     title: "Multi-Chain Intelligence",
     description: "Aggregates data from Ethereum, Solana, Bitcoin, Base, Arbitrum, Polygon, and more.",
-    color: "text-neon-green",
-    bg: "bg-green-500/10 border-green-500/20",
+    color: "text-gold",
+    bg: "bg-gold/5 border-gold/15",
   },
   {
     icon: Brain,
     title: "LLM Detective Analysis",
     description: "AI-powered behavioral profiling classifies wallets, infers activity patterns, and surfaces connections.",
-    color: "text-neon-purple",
-    bg: "bg-purple-500/10 border-purple-500/20",
+    color: "text-rouge",
+    bg: "bg-rouge/5 border-rouge/15",
   },
   {
     icon: Shield,
     title: "Confidence-Rated Inferences",
     description: "Every insight is labeled with a confidence score. Never speculation presented as fact.",
-    color: "text-neon-cyan",
-    bg: "bg-cyan-500/10 border-cyan-500/20",
+    color: "text-tan",
+    bg: "bg-tan/5 border-tan/15",
   },
   {
     icon: Zap,
     title: "DeFi & CEX Tracking",
     description: "Detects exchange interactions, DeFi positions, connected wallets, and fund flows.",
-    color: "text-neon-amber",
-    bg: "bg-amber-500/10 border-amber-500/20",
+    color: "text-amber-400",
+    bg: "bg-amber-900/10 border-amber-800/20",
   },
 ];
 
@@ -47,7 +47,8 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleInvestigate = async () => {
+  // FIX: synchronous navigation — no async delay that could silently fail
+  const handleInvestigate = () => {
     const trimmed = address.trim();
     if (!trimmed) {
       setError("Please enter a wallet address");
@@ -55,8 +56,6 @@ export default function HomePage() {
     }
     setError("");
     setIsLoading(true);
-    // Brief pause then navigate with ?from=search so report shows loading animation
-    await new Promise((r) => setTimeout(r, 400));
     router.push(`/report/${encodeURIComponent(trimmed)}?from=search`);
   };
 
@@ -70,16 +69,16 @@ export default function HomePage() {
       <header className="border-b border-border/50 px-4 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-neon-green/20 border border-neon-green/30 flex items-center justify-center">
-              <Search size={16} className="text-neon-green" />
+            <div className="w-8 h-8 rounded-lg bg-gold/20 border border-gold/30 flex items-center justify-center">
+              <Search size={16} className="text-gold" />
             </div>
-            <span className="font-mono font-bold text-white">
-              OnChain<span className="text-neon-green">Detective</span>
+            <span className="font-mono font-bold text-foreground">
+              OnChain<span className="text-gold">Detective</span>
             </span>
           </div>
           <div className="flex items-center gap-3 text-xs font-mono text-muted-foreground">
-            <span className="hidden sm:block">v0.1.0 · Phase 1</span>
-            <span className="px-2 py-1 rounded-full bg-neon-green/10 border border-neon-green/20 text-neon-green text-xs animate-pulse-neon">
+            <span className="hidden sm:block">v0.2.0 · Phase 2</span>
+            <span className="px-2 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs animate-pulse-gold">
               ● LIVE
             </span>
           </div>
@@ -88,40 +87,38 @@ export default function HomePage() {
 
       {/* Hero */}
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-16 md:py-24 relative overflow-hidden">
-        {/* Background grid */}
-        <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
-
-        {/* Glow orbs */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-neon-green/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
+        {/* Background */}
+        <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gold/4 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-rouge/4 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 w-full max-w-3xl text-center animate-fade-in">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neon-green/30 bg-neon-green/5 text-neon-green text-xs font-mono mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse-neon" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/5 text-gold text-xs font-mono mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse-gold" />
             Powered by CoinStats Wallet API + LLM Analysis
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl md:text-6xl font-mono font-bold text-white mb-4 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-mono font-bold text-foreground mb-4 leading-tight">
             Investigate Any{" "}
-            <span className="text-neon-green text-glow-green">Crypto Wallet</span>
+            <span className="text-gold text-glow-gold">Crypto Wallet</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground font-sans mb-2 max-w-2xl mx-auto leading-relaxed">
-            Paste any wallet address and get a full detective dossier — holdings, connected wallets, 
-            CEX flows, behavioral profiling, P&L, and AI-powered inferences.
+            Paste any wallet address and get a full detective dossier — holdings, connected wallets,
+            CEX flows, behavioral profiling, P&amp;L, and AI-powered inferences.
           </p>
           <p className="text-sm text-muted-foreground font-mono mb-10">
             ETH · SOL · BTC · Base · Arbitrum · Polygon · and more
           </p>
 
-          {/* Input */}
+          {/* Search input */}
           <div className="w-full max-w-2xl mx-auto mb-4">
             <div
               className={`flex items-center gap-3 p-1.5 rounded-xl border transition-all ${
                 error
-                  ? "border-red-500/50 bg-red-500/5"
-                  : "border-border hover:border-neon-green/40 focus-within:border-neon-green/60 focus-within:glow-green bg-card"
+                  ? "border-red-700/50 bg-red-900/5"
+                  : "border-border hover:border-gold/40 focus-within:border-gold/60 focus-within:glow-gold bg-card"
               }`}
             >
               <div className="pl-3 text-muted-foreground shrink-0">
@@ -130,25 +127,22 @@ export default function HomePage() {
               <input
                 type="text"
                 value={address}
-                onChange={(e) => {
-                  setAddress(e.target.value);
-                  setError("");
-                }}
+                onChange={(e) => { setAddress(e.target.value); setError(""); }}
                 onKeyDown={handleKeyDown}
                 placeholder="0x... or Solana address or BTC address"
-                className="flex-1 bg-transparent text-white font-mono text-sm placeholder:text-muted-foreground/60 outline-none py-3 min-w-0"
+                className="flex-1 bg-transparent text-foreground font-mono text-sm placeholder:text-muted-foreground/50 outline-none py-3 min-w-0"
                 disabled={isLoading}
               />
               <Button
                 onClick={handleInvestigate}
                 disabled={isLoading}
                 size="lg"
-                className="shrink-0 bg-neon-green text-background hover:bg-neon-green/90 font-mono font-bold text-sm px-5 h-11 rounded-lg transition-all hover:glow-green"
+                className="shrink-0 font-mono font-bold text-sm px-5 h-11 rounded-lg"
               >
                 {isLoading ? (
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
-                    Scanning...
+                    Opening...
                   </div>
                 ) : (
                   <div className="flex items-center gap-2">
@@ -170,7 +164,7 @@ export default function HomePage() {
               <button
                 key={addr}
                 onClick={() => setAddress(addr)}
-                className="text-xs font-mono text-neon-cyan/70 hover:text-neon-cyan border border-cyan-500/20 hover:border-cyan-500/40 px-2.5 py-1 rounded-lg bg-cyan-500/5 hover:bg-cyan-500/10 transition-all"
+                className="text-xs font-mono text-tan/70 hover:text-tan border border-tan/20 hover:border-tan/40 px-2.5 py-1 rounded-lg bg-tan/5 hover:bg-tan/10 transition-all"
               >
                 {addr.slice(0, 10)}...{addr.slice(-6)}
               </button>
@@ -200,9 +194,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="border-t border-border/50 px-4 py-4">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-muted-foreground">
-          <span>
-            OnChain Detective · All inferences are probabilistic, not confirmed facts
-          </span>
+          <span>OnChain Detective · All inferences are probabilistic, not confirmed facts</span>
           <div className="flex items-center gap-4">
             <span>Data: CoinStats API</span>
             <span>Analysis: LLM</span>

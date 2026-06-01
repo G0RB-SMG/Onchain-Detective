@@ -27,8 +27,8 @@ function ReportSkeleton() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
-        <div className="w-12 h-12 border-2 border-neon-green/30 border-t-neon-green rounded-full animate-spin mx-auto mb-4" />
-        <p className="font-mono text-neon-green text-sm">Initializing investigation...</p>
+        <div className="w-12 h-12 border-2 border-gold/30 border-t-gold rounded-full animate-spin mx-auto mb-4" />
+        <p className="font-mono text-gold text-sm">Initializing investigation...</p>
       </div>
     </div>
   );

@@ -11,12 +11,8 @@ export function formatAddress(address: string, chars = 6): string {
 }
 
 export function formatCurrency(value: number, decimals = 2): string {
-  if (value >= 1_000_000) {
-    return `$${(value / 1_000_000).toFixed(1)}M`;
-  }
-  if (value >= 1_000) {
-    return `$${(value / 1_000).toFixed(1)}K`;
-  }
+  if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`;
+  if (value >= 1_000) return `$${(value / 1_000).toFixed(1)}K`;
   return `$${value.toFixed(decimals)}`;
 }
 
@@ -40,8 +36,9 @@ export function getChainColor(chain: string): string {
     avalanche: "#E84142",
     avax: "#E84142",
     bsc: "#F3BA2F",
+    multiple: "#C49A4A",
   };
-  return colors[chain.toLowerCase()] || "#00ff88";
+  return colors[chain.toLowerCase()] || "#C8B89A";
 }
 
 export function classifyWallet(label: string): {
@@ -50,42 +47,12 @@ export function classifyWallet(label: string): {
   border: string;
 } {
   const map: Record<string, { color: string; bg: string; border: string }> = {
-    Trader: {
-      color: "text-neon-cyan",
-      bg: "bg-cyan-500/10",
-      border: "border-cyan-500/30",
-    },
-    "Long-Term Investor": {
-      color: "text-neon-green",
-      bg: "bg-green-500/10",
-      border: "border-green-500/30",
-    },
-    "NFT Flipper": {
-      color: "text-neon-purple",
-      bg: "bg-purple-500/10",
-      border: "border-purple-500/30",
-    },
-    "DeFi Power User": {
-      color: "text-neon-amber",
-      bg: "bg-amber-500/10",
-      border: "border-amber-500/30",
-    },
-    "Memecoin Degen": {
-      color: "text-pink-400",
-      bg: "bg-pink-500/10",
-      border: "border-pink-500/30",
-    },
-    Whale: {
-      color: "text-blue-400",
-      bg: "bg-blue-500/10",
-      border: "border-blue-500/30",
-    },
+    Trader: { color: "text-tan", bg: "bg-tan/10", border: "border-tan/30" },
+    "Long-Term Investor": { color: "text-gold", bg: "bg-gold/10", border: "border-gold/30" },
+    "NFT Flipper": { color: "text-rouge", bg: "bg-rouge/10", border: "border-rouge/30" },
+    "DeFi Power User": { color: "text-amber-400", bg: "bg-amber-900/10", border: "border-amber-800/30" },
+    "Memecoin Degen": { color: "text-rouge", bg: "bg-rouge/10", border: "border-rouge/30" },
+    Whale: { color: "text-tan", bg: "bg-tan/10", border: "border-tan/30" },
   };
-  return (
-    map[label] || {
-      color: "text-neon-green",
-      bg: "bg-green-500/10",
-      border: "border-green-500/30",
-    }
-  );
+  return map[label] || { color: "text-gold", bg: "bg-gold/10", border: "border-gold/30" };
 }

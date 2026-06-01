@@ -1,7 +1,10 @@
-export const SAMPLE_REPORT = {
+import type { WalletReport } from "./report-types";
+
+export const SAMPLE_REPORT: WalletReport = {
   address: "0x742d35Cc6634C0532925a3b8D4C9E2b3A8c5f1e2",
-  ensName: "cryptodegen.eth",
-  generatedAt: "2026-05-31T14:22:00Z",
+  resolvedName: "cryptodegen.eth",
+  isLive: false,
+  fetchedAt: "2026-06-01T09:00:00Z",
 
   overview: {
     totalBalanceUsd: 847_320.44,
@@ -247,7 +250,7 @@ export const SAMPLE_REPORT = {
     {
       label: "Tax Optimization Strategy",
       confidence: 63,
-      color: "green",
+      color: "gold",
       description:
         "Realized losses consistently cluster in late November–December each year (2023, 2024, 2025), consistent with tax-loss harvesting strategies common in jurisdictions with annual capital gains accounting periods (US, UK, Germany).",
     },
@@ -268,5 +271,3 @@ export const SAMPLE_REPORT = {
     { date: "2026-05-31", event: "Current balance: $847,320", type: "current", value: 847320, chain: "multiple" },
   ],
 };
-
-export type SampleReport = typeof SAMPLE_REPORT;

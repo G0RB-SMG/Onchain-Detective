@@ -3,62 +3,38 @@
 
 @theme {
   /* === Minimal Noir Detective Theme === */
-  --color-background: #1A140F;        /* Dark warm brown */
-  --color-foreground: #F5F0E8;        /* Warm off-white */
-  --color-card: #221B15;              /* Slightly lighter brown for cards */
-  --color-border: #3A2F25;            /* Subtle warm border */
-  --color-accent: #8B3A1A;            /* Deep brown accent */
+  --color-background: #120E0A;
+  --color-foreground: #F5F0E8;
+  --color-card: #221B15;
+  --color-border: #3A2F25;
+  --color-accent: #8B3A1A;
   --color-accent-foreground: #F5F0E8;
 
   /* Supporting colors */
-  --color-muted: #A89F8F;             /* Softer secondary text */
+  --color-muted: #A89F8F;
   --color-muted-foreground: #7A7060;
 
-  /* Status colors (keep for live/sample banners) */
+  /* Status colors */
   --color-emerald: #10b981;
   --color-amber: #f59e0b;
   --color-gold: #C49A4A;
 }
 
-/* Base styles */
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
-  font-family: 'Inter', system_ui, sans-serif;
 }
 
-/* Monospace for data, addresses, logs */
 .font-mono {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
 }
 
-/* Card styling */
 .card {
   background-color: var(--color-card);
   border: 1px solid var(--color-border);
 }
 
-/* Section dividers */
 .dossier-divider {
   border-color: var(--color-border);
   opacity: 0.6;
-}
-
-/* Accent buttons / highlights */
-.btn-accent {
-  background-color: var(--color-accent);
-  color: var(--color-accent-foreground);
-}
-
-.btn-accent:hover {
-  background-color: #A64A24;
-}
-
-/* Subtle gold accents (used sparingly) */
-.text-gold {
-  color: var(--color-gold);
-}
-
-.border-gold {
-  border-color: var(--color-gold);
 }
